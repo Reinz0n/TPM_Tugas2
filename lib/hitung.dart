@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:tugas2_tpm2024/ganjilgenap.dart';
 import 'package:tugas2_tpm2024/main.dart';
 
@@ -15,7 +13,7 @@ class HitungPage extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Hitung(title: 'Kalkulator'),
+      home: const Hitung(title: 'Kalkulator'),
     );
   }
 }
@@ -39,8 +37,66 @@ class _HitungState extends State<Hitung> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.blue,
-          title: Text(widget.title, style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.blue,
+        title: Text(widget.title, style: TextStyle(color: Colors.white)),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Drawer Header'),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.home,
+              ),
+              title: const Text('Kalkulator Penjumlahan & Pengurangan'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.home,
+              ),
+              title: const Text('Pengecekan Ganjil Genap'),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => GanjilGenapPage()));
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.logout,
+              ),
+              title: Text('Sign Out'),
+              onTap: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Login(title: 'Demo Tugas 2')));
+              },
+            ),
+            AboutListTile(
+              icon: Icon(Icons.info),
+              child: Text('About App'),
+              applicationIcon: Icon(
+                Icons.local_play,
+              ),
+              applicationName: 'Tugas2',
+              aboutBoxChildren: [
+                Text('Disusun oleh :\n'),
+                Text('Farras Alam Majid (123200044)\n'),
+                Text('Muhammad Iqbal Daud Ibrahim (123200076)\n'),
+                Text('Mikhael Rivandio Rekzadianto (123200078)\n'),
+              ],
+            )
+          ],
+        ),
       ),
       body: Form(
         key: _formkey,
@@ -103,8 +159,7 @@ class _HitungState extends State<Hitung> {
                       onPressed: () {
                         if (_formkey.currentState!.validate()) {
                           calculate('+');
-                        }
-                        else {
+                        } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             // jika ada data yang kosong
                             const SnackBar(content: Text('Data Masih Kosong')),
@@ -114,13 +169,13 @@ class _HitungState extends State<Hitung> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
                       ),
-                      child: Text('Tambah', style: TextStyle(color: Colors.white))),
+                      child: Text('Tambah',
+                          style: TextStyle(color: Colors.white))),
                   ElevatedButton(
                       onPressed: () {
                         if (_formkey.currentState!.validate()) {
                           calculate('-');
-                        }
-                        else {
+                        } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             // jika ada data yang kosong
                             const SnackBar(content: Text('Data Masih Kosong')),
@@ -130,7 +185,8 @@ class _HitungState extends State<Hitung> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
                       ),
-                      child: Text('Kurang', style: TextStyle(color: Colors.white)))
+                      child:
+                          Text('Kurang', style: TextStyle(color: Colors.white)))
                 ],
               ),
               Padding(
@@ -154,15 +210,6 @@ class _HitungState extends State<Hitung> {
             ],
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => {
-          Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                  builder: ((context) => Login(title: 'Demo Tugas 2')))),
-        },
-        child: Icon(Icons.logout_rounded),
       ),
     );
   }

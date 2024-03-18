@@ -45,6 +45,66 @@ class _GanjilGenapScreenState extends State<GanjilGenapScreen> {
         backgroundColor: Colors.blue,
         title: Text(widget.title, style: TextStyle(color: Colors.white)),
       ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Drawer Header'),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.home,
+              ),
+              title: const Text('Kalkulator Penjumlahan & Pengurangan'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HitungPage()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.home,
+              ),
+              title: const Text('Pengecekan Ganjil Genap'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.logout,
+              ),
+              title: Text('Sign Out'),
+              onTap: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Login(title: 'Demo Tugas 2')));
+              },
+            ),
+            AboutListTile(
+              icon: Icon(Icons.info),
+              child: Text('About App'),
+              applicationIcon: Icon(
+                Icons.local_play,
+              ),
+              applicationName: 'Tugas2',
+              aboutBoxChildren: [
+                Text('Disusun oleh :\n'),
+                Text('Farras Alam Majid (123200044)\n'),
+                Text('Muhammad Iqbal Daud Ibrahim (123200076)\n'),
+                Text('Mikhael Rivandio Rekzadianto (123200078)\n'),
+              ],
+            )
+          ],
+        ),
+      ),
       body: Form(
         key: _formkey,
         child: Padding(
@@ -54,7 +114,8 @@ class _GanjilGenapScreenState extends State<GanjilGenapScreen> {
             children: [
               Padding(
                 // logo flutter
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 50),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 50),
                 child: FlutterLogo(
                   size: 100,
                 ),
@@ -86,8 +147,7 @@ class _GanjilGenapScreenState extends State<GanjilGenapScreen> {
                         result = 'Ganjil';
                       }
                     });
-                  }
-                  else {
+                  } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       // jika ada data yang kosong
                       const SnackBar(content: Text('Data Masih Kosong')),
@@ -112,22 +172,10 @@ class _GanjilGenapScreenState extends State<GanjilGenapScreen> {
                       MaterialPageRoute(builder: ((context) => HitungPage())),
                     ),
                     child: Text('Halaman Kalkulator'),
-                  )
-              ),
+                  )),
             ],
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => {
-          Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                  builder: ((context) => Login(
-                        title: 'Demo Tugas 2',
-                      )))),
-        },
-        child: Icon(Icons.logout_rounded),
       ),
     );
   }

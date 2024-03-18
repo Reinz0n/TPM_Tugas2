@@ -166,16 +166,6 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 40),
-                child: Center(
-                    child: Text('Dibuat oleh:\n'
-                        'Mikhael Rivandio Rekzadianto (123200078)\n'
-                        'Muhammad Iqbal Daudi I. (123200076)\n'
-                        'Farras Alam Majid (123200044)'
-                    ),
-                ),
-              ),
             ],
           ),
         ),
